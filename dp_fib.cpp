@@ -18,9 +18,9 @@ int main()
 {
     long long int n;
     memset(fibNum, -1, sizeof(fibNum));
-    scanf("%lld", &n);
+    cin>>n;
     long long int res=fib(n);
-    printf("%lld", res);
+    cout<<res;
     return 0;
 }
 
