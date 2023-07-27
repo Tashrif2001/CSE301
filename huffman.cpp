@@ -9,19 +9,34 @@ struct node
     struct node* right;
 };
 
-void print(struct node* root) {
-    if(!root)
-    return;
-    cout<<root->c<<" "<<root->freq<<" ";
-    print(root->left);
-    print(root->right);
+void printCodes(struct node* root, string& code)
+{
+    if (!root)
+        return;
+    if(root->left)
+    {
+        code+='0';
+        printCodes(root->left,code);
+        code.pop_back();
+    }
+
+    if(root->right)
+    {
+        code+='1';
+        printCodes(root->right, code);
+        code.pop_back();
+    }
+    if(!root->left && !root->right)
+    {
+        cout<<root->c<<": "<<code<<endl;
+    }
 }
 
-void b_sort(struct node* *arr)
+void b_sort(struct node* arr[],int t)
 {
-    for(int i=0; i<10; i++)
+    for(int i=0; i<t; i++)
     {
-        for(int j=0; j<10; j++)
+        for(int j=0; j<t; j++)
         {
             if(arr[i]->freq<arr[j]->freq)
             {
@@ -38,38 +53,52 @@ struct node* build(char c, int freq)
     struct node* newNode = (struct node*)malloc(sizeof(struct node));
     newNode->c = c;
     newNode->freq = freq;
-    newNode->left=NULL;
-    newNode->right=NULL;
+    newNode->left = NULL;
+    newNode->right = NULL;
     return newNode;
 }
 
 int main()
 {
-    srand(time(NULL));
-    int s=4;
-    struct node* arr[s];
-    for(int i=0; i<s; i++)
+    int s=6,t;
+    char ch;
+    int fr;
+    cout<<"Enter numbers of symbols: ";
+    cin>>t;
+    struct node* arr[t];
+    for(int i=0; i<t; i++)
     {
-        arr[i] = build(i+'a', i+1);
+        cout<<"Enter character: ";
+        cin>>ch;
+        cout<<"Enter "<<ch<<"'s frequency: ";
+        cin>>fr;
+        arr[i]=build(ch, fr);
     }
-    int i=0;
-    b_sort(arr);
-    while(s>1)
-    {
-        struct node* huff1 = arr[i];
-        struct node* huff2 = arr[i+1];
-        struct node* newHuff = build(-1, huff1->freq+huff2->freq);
-        newHuff->left=huff1;
-        newHuff->right=huff2;
-        s-=2;
-        arr[s]=newHuff;
+    cout<<endl;
+    for(int i = 0; i < t; i++)
+        cout << arr[i]->c << ": " << arr[i]->freq << endl;
+    cout << endl;
 
-        for (i = s-1; i>0 && arr[i]->freq<arr[i-1]->freq; i--) {
-            struct node* temp = arr[i];
-            arr[i] = arr[i - 1];
-            arr[i - 1] = temp;
+    int i = 0;
+    b_sort(arr, t);
+    while(t > 1)
+    {
+        struct node* huff1 = arr[0];
+        struct node* huff2 = arr[1];
+        struct node* newHuff = build('@', huff1->freq + huff2->freq);
+        newHuff->left = huff1;
+        newHuff->right = huff2;
+
+        arr[0] = newHuff;
+
+        for (i = 1; i < t-1; i++)
+        {
+            arr[i] = arr[i + 1];
         }
+        t--;
+        b_sort(arr,t);
     }
-    print(arr[0]);
+    string code="";
+    printCodes(arr[0], code);
     return 0;
 }
