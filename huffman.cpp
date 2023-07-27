@@ -74,7 +74,7 @@ int main()
         cin>>fr;
         arr[i]=build(ch, fr);
     }
-    cout<<endl;
+    cout<<"Before Encoding: "<<endl;
     for(int i = 0; i < t; i++)
         cout << arr[i]->c << ": " << arr[i]->freq << endl;
     cout << endl;
@@ -97,6 +97,7 @@ int main()
         t--;
         b_sort(arr,t);
     }
+    cout<<"After Encoding: "<<endl;
     string code="";
     printCodes(arr[0], code);
     return 0;
