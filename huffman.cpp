@@ -78,8 +78,7 @@ int main()
     for(int i = 0; i < t; i++)
         cout << arr[i]->c << ": " << arr[i]->freq << endl;
     cout << endl;
-
-    int i = 0;
+    
     b_sort(arr, t);
     while(t > 1)
     {
@@ -91,7 +90,7 @@ int main()
 
         arr[0] = newHuff;
 
-        for (i = 1; i < t-1; i++)
+        for (int i = 1; i < t-1; i++)
         {
             arr[i] = arr[i + 1];
         }
