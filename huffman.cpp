@@ -60,9 +60,9 @@ struct node* build(char c, int freq)
 
 int main()
 {
-    int s=6,t;
+    int t,fr;
     char ch;
-    int fr;
+
     cout<<"Enter numbers of symbols: ";
     cin>>t;
     struct node* arr[t];
