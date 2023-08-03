@@ -29,7 +29,6 @@ int main() {
     cin >> num;
 
     vector<act> activities;
-    vector<string> order;
 
     for (int i = 0; i < num; i++) {
         struct act act1;
@@ -46,6 +45,9 @@ int main() {
     }
 
     b_sort(activities);
+
+    vector<string> order;
+    order.push_back(activities[0].name);
 
     int lastTime = activities[0].finish;
     for (int i = 1; i < activities.size(); i++) {
