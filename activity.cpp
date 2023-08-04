@@ -55,7 +55,7 @@ void recursive(int i)
 }
 int main()
 {
-    freopen("test.txt", "r", stdin);
+    //freopen("test.txt", "r", stdin);
     read_code();
     sort(jobs, jobs+numJob, compare);
     recursive(0);
