@@ -1,64 +1,69 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define mx 100
 
-struct act{
-    string name;
+int numJob;
+
+struct job{
+    char jobId[20];
     int start;
     int finish;
-};
+    int compatibility;
+}jobs[100];
 
-void b_sort(vector<act>& activities) {
-    for (int i = 0; i < activities.size() - 1; i++) {
-        for (int j = 0; j < activities.size() - 1; j++) {
-            if (activities[i].finish < activities[j].finish) {
-                struct act temp = activities[i];
-                activities[i] = activities[j];
-                activities[j] = temp;
-            }
+void read_code()
+{
+    cin>>numJob;
+    for(int i=0; i<numJob; i++)
+    {
+        cin>>jobs[i].jobId;
+        cin>>jobs[i].start;
+        cin>>jobs[i].finish;
+        jobs[i].compatibility = 1;
+    }
+}
+bool compare(struct job job1, struct job job2)
+{
+    return job1.finish<job2.finish;
+}
+
+void ordering()
+{
+    int lastTime = jobs[0].finish;
+    for(int i=1; i<numJob; i++)
+    {
+        if(jobs[i].start<lastTime)
+        {
+            jobs[i].compatibility=0;
         }
+        else
+            lastTime= jobs[i].finish;
     }
 }
 
-int main() {
+void recursive(int i)
+{
+    int m=i+1;
+    while(m<=numJob && jobs[m].start<jobs[i].finish)
+    {
+        jobs[m].compatibility=0;
+        m++;
+    }
+    if(m<=numJob)
+        recursive(m);
+    else
+        return;
+}
+int main()
+{
     freopen("test.txt", "r", stdin);
-    int num, t;
-    string s;
-
-    cout << "Enter number of activities: ";
-    cin >> num;
-
-    vector<act> activities;
-
-    for (int i = 0; i < num; i++) {
-        struct act act1;
-        cout << "Enter name of activity: ";
-        cin >> s;
-        act1.name = s;
-        cout << "Enter start time: ";
-        cin >> t;
-        act1.start = t;
-        cout << "Enter ending time: ";
-        cin >> t;
-        act1.finish = t;
-        activities.push_back(act1);
+    read_code();
+    sort(jobs, jobs+numJob, compare);
+    recursive(0);
+    //ordering();
+    for(int i=0; i<numJob; i++)
+    {
+        if(jobs[i].compatibility)
+            cout<<jobs[i].jobId<<" ";
     }
-
-    b_sort(activities);
-
-    vector<string> order;
-    order.push_back(activities[0].name);
-
-    int lastTime = activities[0].finish;
-    for (int i = 1; i < activities.size(); i++) {
-        if (activities[i].start >= lastTime) {
-            order.push_back(activities[i].name);
-            lastTime = activities[i].finish;
-        }
-    }
-
-    for (int i = 0; i < order.size(); i++)
-        cout << order[i] << " ";
-
     return 0;
 }
