@@ -54,7 +54,7 @@ int main()
         items[i].val_per_weight = (items[i].value/items[i].weight);
     }
     cin>>w;
-    benefit(items, w, n);
+    benefit(items, w);
 
     return 0;
 }
