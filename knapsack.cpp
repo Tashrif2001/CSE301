@@ -11,15 +11,15 @@ bool compare(struct item item1, struct item item2)
 {
     return item1.val_per_weight>item2.val_per_weight;
 }
-void benefit(vector<item>&items, int w, int n)
+void benefit(vector<item>&items, int w)
 {
     sort(items.begin(), items.end(), compare);
 
     double total=0.0;
     double curr_weight=0.0;
-    double x[n]={0};
+    double x[items.size()]={0};
 
-    for(int i=0; i<n; i++)
+    for(int i=0; i<items.size(); i++)
     {
         if(curr_weight + items[i].weight<=w)
         {
@@ -35,7 +35,7 @@ void benefit(vector<item>&items, int w, int n)
             break;
         }
     }
-    for(int i=0; i<n; i++)
+    for(int i=0; i<items.size(); i++)
     {
         if(x[i])
         cout<<x[i]<<"ml taken from "<<items[i].weight<<"ml"<<endl;
