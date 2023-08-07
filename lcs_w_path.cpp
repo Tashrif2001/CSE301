@@ -52,7 +52,6 @@ int lcs(string x, string y)
                     dp[i][j]= dp[i][j-1];
                     path[i][j] = '-';
                 }
-
             }
         }
     }
