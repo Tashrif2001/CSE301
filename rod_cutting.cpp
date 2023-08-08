@@ -7,7 +7,7 @@ struct rod{
 
 vector<int>dp(mx, -1);
 int q;
-int rod_cut(struct rod rods[], int n, vector<int>&dp)
+int rod_cut(struct rod rods[], int n)
 {
     if(dp[n]>0)
     return dp[n];
@@ -31,7 +31,7 @@ int main() {
         cin>>rods[i].len>>rods[i].price;
     }
     cin>>n;
-    int res=rod_cut(rods, n, dp);
+    int res=rod_cut(rods, n);
     cout<<res;
     return 0;
 }
