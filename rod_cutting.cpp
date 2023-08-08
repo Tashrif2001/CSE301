@@ -9,7 +9,7 @@ vector<int>dp(mx, -1);
 int q;
 int rod_cut(struct rod rods[], int n, vector<int>&dp)
 {
-    if(dp[n]>=0)
+    if(dp[n]>0)
     return dp[n];
     if(n==0)
     q=0;
