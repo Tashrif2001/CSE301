@@ -39,24 +39,24 @@ void print_path(string &x, string &y, int i, int j)
 
 void print_path_2(string &x, string &y, int i, int j)
 {
-    if (i > 0 && j > 0 && x[i - 1] == y[j - 1])
+    if (i>0 && j>0 && x[i-1] == y[j-1])
     {
-        print_path(x, y, i - 1, j - 1);
+        print_path(x, y, i-1, j-1);
     }
-    else if (i > 0 && (j == 0 || dp[i][j] == dp[i - 1][j] + 1))
+    else if (i>0 && (j==0 || dp[i][j] == dp[i-1][j]+1))
     {
-        print_path(x, y, i - 1, j);
-        cout << "Delete " << x[i - 1] << endl;
+        print_path(x, y, i-1, j);
+        cout << "Delete " << x[i-1] << endl;
     }
-    else if (j > 0 && (i == 0 || dp[i][j] == dp[i][j - 1] + 1))
+    else if (j>0 && (i==0 || dp[i][j] == dp[i][j-1]+1))
     {
-        print_path(x, y, i, j - 1);
-        cout << "Insert " << y[j - 1] << endl;
+        print_path(x, y, i, j-1);
+        cout << "Insert " << y[j-1] << endl;
     }
-    else if (i > 0 && j > 0 && dp[i][j] == dp[i - 1][j - 1] + 1)
+    else if (i>0 && j>0 && dp[i][j] == dp[i-1][j-1]+1)
     {
-        print_path(x, y, i - 1, j - 1);
-        cout << "Substitute " << x[i - 1] << " with " << y[j - 1] << endl;
+        print_path(x, y, i-1, j-1);
+        cout << "Substitute " << x[i-1] << " with " << y[j-1] << endl;
     }
 }
 
