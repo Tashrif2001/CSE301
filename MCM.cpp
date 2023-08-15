@@ -36,6 +36,7 @@ int mcm(vector<int>& p, int i, int j) {
 }
 
 int main() {
+    freopen("mcm.txt", "r", stdin);
     int n;
     cout << "Enter number of matrices: ";
     cin >> n;
