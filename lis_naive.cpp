@@ -10,7 +10,7 @@ void print_sol(vector<int>&prev, vector<int>&num, int i)
 
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    freopen("lis.txt", "r", stdin);
     int n;
     cin>>n;
     vector<int>num(n),l(n, 1),prev(n,-1);
