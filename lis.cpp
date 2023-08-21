@@ -11,7 +11,7 @@ void print_interval(vector<int>&prev, vector<int>&num, int i)
 }
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    freopen("lis.txt", "r", stdin);
     int n;
     cout<<"Enter size of array: ";
     cin>>n;
