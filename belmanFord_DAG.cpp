@@ -73,6 +73,7 @@ void print(int i)
 }
 int main()
 {   
+    //freopen("input.txt", "r", stdin);
     int v,e,x,y,w;
 
     cin>>v>>e;
