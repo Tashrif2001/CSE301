@@ -78,7 +78,7 @@ void path(int s, int t)
 
 int main()
 {
-    //freopen("input.txt", "r", stdin);
+    //freopen("floyd.txt", "r", stdin);
     int v,e,x,y,w,src,dest;
     cin>>v>>e;
 
