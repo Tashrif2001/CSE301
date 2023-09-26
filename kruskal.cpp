@@ -49,7 +49,7 @@ void kruskal(int V)
 }
 int main()
 {
-    freopen("input.txt", "r", stdin);
+    freopen("kruskal.txt", "r", stdin);
     int v,e,x,y,w;
     cin>>v>>e;
     graph.assign(v, vector<int>(v, 0));
