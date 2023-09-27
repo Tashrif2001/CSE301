@@ -70,7 +70,7 @@ void kruskal(int V)
 
 int main()
 {
-    freopen("kruskal.txt", "r", stdin);
+    freopen("kruskal_set.txt", "r", stdin);
     int v,e,x,y,w;
     char a,b;
     cin>>v>>e;
