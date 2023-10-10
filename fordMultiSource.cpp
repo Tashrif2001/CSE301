@@ -61,9 +61,10 @@ int fordFul(int source, int sink, int v)
 
 int main()
 {   
-    //freopen("fordMultiSource.txt", "r", stdin);
-    int v,e,x,y,w,numSource,numSink,sSource=v+1,sSink=v+2;
+    freopen("ford.txt", "r", stdin);
+    int v,e,x,y,w,numSource,numSink;
     cin>>v>>e;
+    int sSource=v,sSink=v+1;
     graph.assign(v+2, vector<int>(v+2, 0));
 
     for(int i=0; i<e; i++)
@@ -82,7 +83,12 @@ int main()
         cin>>y;
         graph[y][sSink]=INT_MAX;
     }
-
-    cout<<"Max Flow: "<<fordFul(0,5,v+2);
+    // for(int i=0; i<v+2; i++)
+    // {
+    //     for(int j=0; j<v+2; j++)
+    //     cout<<graph[i][j]<<" ";
+    //     cout<<endl;
+    // }
+    cout<<"Max Flow: "<<fordFul(sSource,sSink,v+2);
     return 0;
 }
