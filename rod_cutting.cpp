@@ -12,7 +12,7 @@ int rod_cut(struct rod rods[], int n)
     if(dp[n]>0)
     return dp[n];
     if(n==0)
-    q=0;
+    dp[n]=0;
     else
     {
         q=INT_MIN;
@@ -20,7 +20,7 @@ int rod_cut(struct rod rods[], int n)
             q = max(q, rods[i].price+rod_cut(rods, n-i-1, dp));
     }
     dp[n]=q;
-    return q;
+    return dp[n];
 }
 int main() {
     //freopen("rod.txt", "r", stdin);
