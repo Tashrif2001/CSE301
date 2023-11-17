@@ -1,33 +1,34 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int>dp;
-int coinChange(vector<int>&coins, int amount)
+vector<vector<int>>dp;
+int coinChange(vector<int>&coins, int coin, int amount)
 {
+    if(!coin)
+    return amount;
+
     if(!amount)
     return 0;
 
-    if(dp[amount]!=INT_MAX)
-    return dp[amount];
+    if(dp[coin][amount]!=INT_MAX)
+    return dp[coin][amount];
 
-    int q = INT_MAX;
-    for(int i=0; i<coins.size(); i++)
+    else if(coins[coin-1]>amount)
     {
-        if(amount>=coins[i])
-        {
-            int temp = coinChange(coins, amount-coins[i]);
-            if(temp!=INT_MAX)
-            q = min(q, temp+1);
-        }
+        dp[coin][amount]=coinChange(coins, coin-1, amount);
     }
-    dp[amount]=q;
-    return dp[amount];
+    else
+    {
+        dp[coin][amount]=min(coinChange(coins, coin-1, amount), 1+coinChange(coins, coin, amount-coins[coin-1]));
+    }
+    
+    return dp[coin][amount];
 }
 int main()
 {
-    vector<int>coins={1,2,5,6};
-    int amount=11;
-    dp.assign(amount+1, INT_MAX);
-    cout<<coinChange(coins, amount)<<endl;
+    vector<int>coins={1,2,5};
+    int amount=11, coin=coins.size();
+    dp.assign(coin+1, vector<int>(amount+1, INT_MAX));
+    cout<<coinChange(coins, coin, amount)<<endl;
     return 0;
 }
