@@ -8,16 +8,16 @@ void print_path(string &x, int i, int j)
 {
     if (!i || !j)
         return;
-    if (path[i][j] == '\\')
+    if (x[i-1]==y[j-1])
     {
         print_path(x, i - 1, j - 1);
         cout << x[i - 1] << " ";
     }
-    else if(path[i][j] == '|')
+    else if(dp[i][j]==dp[i-1][j])
     {
         print_path(x, i - 1, j);
     }
-    else if (path[i][j] == '-')
+    else
     {
         print_path(x, i, j - 1);
     }
