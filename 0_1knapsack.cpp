@@ -7,9 +7,11 @@ struct item{
     int value;
 }items[100];
 
-int dp[mx][mx];
+vector<vector<int>>dp;
+
 void knapsack(int n, int W)
 {
+    dp.assign(n+1, vector<int>(W+1, INT_MAX));
     for(int i=0; i<=n; i++)
     {
         for(int w=0; w<=W; w++)
